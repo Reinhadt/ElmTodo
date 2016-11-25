@@ -1,0 +1,115 @@
+var _user$project$Main$todos = function (t) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(t.nombre))
+					]))
+			]));
+};
+var _user$project$Main$todoList = function (model) {
+	return A2(
+		_elm_lang$html$Html$ul,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		A2(_elm_lang$core$List$map, _user$project$Main$todos, model.tarea));
+};
+var _user$project$Main$initModel = {
+	tarea: _elm_lang$core$Native_List.fromArray(
+		[]),
+	nombre: ''
+};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {tarea: a, nombre: b};
+	});
+var _user$project$Main$Tareas = function (a) {
+	return {nombre: a};
+};
+var _user$project$Main$save = function (model) {
+	var lista = _user$project$Main$Tareas(model.nombre);
+	var newTareas = A2(_elm_lang$core$List_ops['::'], lista, model.tarea);
+	return _elm_lang$core$Native_Utils.update(
+		model,
+		{tarea: newTareas, nombre: ''});
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'UpdateModelo') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{nombre: _p0._0});
+		} else {
+			return _user$project$Main$save(model);
+		}
+	});
+var _user$project$Main$UpdateTarea = {ctor: 'UpdateTarea'};
+var _user$project$Main$UpdateModelo = function (a) {
+	return {ctor: 'UpdateModelo', _0: a};
+};
+var _user$project$Main$todoForm = function (model) {
+	return A2(
+		_elm_lang$html$Html$form,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Events$onSubmit(_user$project$Main$UpdateTarea)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text'),
+						_elm_lang$html$Html_Attributes$placeholder('Name'),
+						_elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateModelo),
+						_elm_lang$html$Html_Attributes$value(model.nombre)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('submit')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('PÍCALE')
+					])),
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(model))
+					]))
+			]));
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$todoForm(model),
+				_user$project$Main$todoList(model)
+			]));
+};
+var _user$project$Main$main = {
+	main: _elm_lang$html$Html_App$beginnerProgram(
+		{model: _user$project$Main$initModel, view: _user$project$Main$view, update: _user$project$Main$update})
+};
